@@ -797,6 +797,15 @@ body {
   color: var(--accent);
 }
 
+/* 页脚鸣谢（黑色粗体小字，暗色模式自动适配） */
+.credit {
+  margin-top: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  opacity: 0.8;
+}
+
 /* ---------- 克制的滚动淡入 ---------- */
 .reveal {
   opacity: 0;
