@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Davis Lau · Physics Graduate · AI-Augmented Researcher</title>
+  <meta name="description" content="Personal profile of Davis Lau — Physics graduate (CityU) combining applied AI and data analytics. ARPES data analysis, medical image registration, LLM-driven automation." />
+  <meta name="author" content="Davis Lau" />
+  <!-- 社交分享卡片（OG）：上线部署后把 og:url 换成你的正式域名 -->
+  <meta property="og:title" content="Davis Lau · Personal Site" />
+  <meta property="og:description" content="Physics Graduate · AI-Augmented Researcher · Data Analytics" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-cover.png" />
+  <meta property="og:url" content="https://your-domain.example/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- 预加载主字体，加快首屏渲染 -->
+  <link rel="preload" href="assets/fonts/GoogleSansFlex-Variable.woff2" as="font" type="font/woff2" crossorigin />
+  <script>
+    // 主题初始化：在首帧渲染前应用，避免闪烁
+    // 优先级：用户手动选择 > 系统偏好 > 亮色
+    (function () {
+      var key = 'dsh-theme', saved = null;
+      try { saved = localStorage.getItem(key); } catch (e) {}
+      var dark = saved ? saved === 'dark'
+        : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    })();
+  </script>
+  <link rel="stylesheet" href="style.css?v=16" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+</head>
+<body>
+
+  <!-- 顶部阅读进度条 -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- 顶部导航 -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top" id="navBrand"></a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false" title="菜单">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero 首屏 -->
+    <section class="hero">
+      <div class="avatar" id="avatar"></div>
+      <h1 class="hero-name" id="heroName"></h1>
+      <p class="hero-tagline" id="heroTagline"></p>
+      <p class="hero-role" id="heroRole"></p>
+      <p class="hero-location" id="heroLocation"></p>
+      <div class="hero-badge" id="heroBadge"></div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="#projects">View projects</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <h2 class="section-title"><span class="section-num">01</span>About</h2>
+      <p class="about-text" id="aboutText"></p>
+      <div class="stats" id="statsRow"></div>
+      <div class="edu-card" id="eduCard"></div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <h2 class="section-title"><span class="section-num">02</span>Experience</h2>
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+      <h2 class="section-title"><span class="section-num">03</span>Projects</h2>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <h2 class="section-title"><span class="section-num">04</span>Skills</h2>
+      <div id="skillsBox"></div>
+      <div class="languages" id="languages"></div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="section" id="certifications">
+      <h2 class="section-title"><span class="section-num">05</span>Certifications</h2>
+      <div class="cert-grid" id="certGrid"></div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <h2 class="section-title"><span class="section-num">06</span>Contact</h2>
+      <p class="contact-note">Feel free to reach out — I'd love to hear from you!</p>
+      <div class="contact-links" id="contactLinks"></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <blockquote class="footer-quote" id="footerQuote"></blockquote>
+    <p>© <span id="year"></span> <span id="footerName"></span> · Built with HTML, CSS & JS</p>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部" title="回到顶部">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <!-- 内容数据文件：所有文字都在 data.js 里修改 -->
+  <script src="data.js?v=16"></script>
+  <script>
+    const D = siteData;
+
+    // 工具函数：转义文本，防止特殊字符破坏页面
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+
+    // 生成外部链接 HTML（email 特判 mailto + 可复制）
+    function linkHtml(label, href) {
+      if (!href) return '';
+      const isMail = String(href).startsWith('mailto:');
+      const extra = isMail ? ' data-copy="' + esc(String(href).replace('mailto:', '')) + '"' : '';
+      return '<a class="btn btn-contact" href="' + esc(href) + '"' + extra + (isMail ? '' : ' target="_blank" rel="noopener"') + '>' + esc(label) + '</a>';
+    }
+
+    // ---------- 导航品牌 ----------
+    document.getElementById('navBrand').textContent = D.name;
+
+    // ---------- Hero ----------
+    document.getElementById('heroName').textContent = D.name;
+    document.getElementById('heroTagline').textContent = D.tagline || '';
+    document.getElementById('heroRole').textContent = D.role;
+    document.getElementById('heroLocation').textContent = '📍 ' + D.location;
+    const heroBadge = document.getElementById('heroBadge');
+    if (D.statusBadge) heroBadge.textContent = D.statusBadge;
+
+    const avatarBox = document.getElementById('avatar');
+    if (D.avatar) {
+      avatarBox.innerHTML = '<img src="' + esc(D.avatar) + '" alt="' + esc(D.name) + '" />';
+    } else {
+      avatarBox.textContent = D.name.trim().charAt(0).toUpperCase();
+    }
+
+    // ---------- About（按 \n\n 分段渲染为独立段落）----------
+    const aboutText = document.getElementById('aboutText');
+    const paragraphs = String(D.summary).split(/\n{2,}/);
+    aboutText.innerHTML = paragraphs.map((p) => '<p>' + esc(p) + '</p>').join('');
+
+    // ---------- 数据亮点统计条 ----------
+    const statsRow = document.getElementById('statsRow');
+    (D.stats || []).forEach((s) => {
+      statsRow.innerHTML +=
+        '<div class="stat">' +
+          '<span class="stat-value">' + esc(s.value) + '</span>' +
+          '<span class="stat-label">' + esc(s.label) + '</span>' +
+        '</div>';
+    });
+
+    const eduCard = document.getElementById('eduCard');
+    D.education.forEach((e) => {
+      const details = (e.details || []).map((d) => '<li>' + esc(d) + '</li>').join('');
+      eduCard.innerHTML +=
+        '<div class="edu-head">' +
+          '<div><h3>' + esc(e.school) + '</h3><p class="edu-degree">' + esc(e.degree) + '</p></div>' +
+          '<div class="edu-meta"><span class="badge">' + esc(e.period) + '</span><span class="badge">📍 ' + esc(e.location) + '</span></div>' +
+        '</div>' +
+        '<ul class="detail-list">' + details + '</ul>';
+    });
+
+    // ---------- Experience（时间线）----------
+    const timeline = document.getElementById('timeline');
+    D.experience.forEach((xp) => {
+      const details = (xp.details || []).map((d) => '<li>' + esc(d) + '</li>').join('');
+      timeline.innerHTML +=
+        '<div class="tl-item">' +
+          '<div class="tl-dot"></div>' +
+          '<div class="tl-card">' +
+            '<div class="tl-head">' +
+              '<h3>' + esc(xp.title) + '</h3>' +
+              '<span class="badge">' + esc(xp.period) + '</span>' +
+            '</div>' +
+            '<p class="tl-company">' + esc(xp.company) + ' · ' + esc(xp.location) + '</p>' +
+            '<ul class="detail-list">' + details + '</ul>' +
+          '</div>' +
+        '</div>';
+    });
+
+    // ---------- Projects（有链接的卡片整卡可点击跳转）----------
+    const projectsGrid = document.getElementById('projectsGrid');
+
+    // 技术栈彩色标签
+    const langBadge = (p) => p.lang
+      ? '<span class="lang-tag lang-' + esc(p.lang.toLowerCase()) + '">' + esc(p.lang) + '</span>'
+      : '';
+
+    D.projects.forEach((p) => {
+      const detailList = (p.details || []).length
+        ? '<ul class="project-details">' + p.details.map((d) => '<li>' + esc(d) + '</li>').join('') + '</ul>'
+        : '';
+      const inner =
+          '<h3 title="' + esc(p.fullTitle || p.title) + '">' + esc(p.title) + '</h3>' +
+          '<p class="project-tag">' + esc(p.tag) + langBadge(p) + '</p>' +
+          '<p class="project-desc">' + esc(p.desc) + '</p>' +
+          detailList;
+      if (p.link) {
+        projectsGrid.innerHTML +=
+          '<a class="project-card project-card-link" href="' + esc(p.link) + '" target="_blank" rel="noopener">' +
+            inner + '<span class="card-cta">View on GitHub ↗</span>' +
+          '</a>';
+      } else {
+        projectsGrid.innerHTML += '<article class="project-card">' + inner + '</article>';
+      }
+    });
+
+    // ---------- Skills ----------
+    const skillsBox = document.getElementById('skillsBox');
+    D.skills.forEach((s) => {
+      const chips = s.items.map((i) => '<span class="chip">' + esc(i) + '</span>').join('');
+      skillsBox.innerHTML +=
+        '<div class="skill-group">' +
+          '<h3>' + esc(s.category) + '</h3>' +
+          '<div class="chip-row">' + chips + '</div>' +
+        '</div>';
+    });
+
+    const languagesBox = document.getElementById('languages');
+    languagesBox.innerHTML = '<span class="lang-label">Languages:</span> ' +
+      D.languages.map((l) => {
+        const name = typeof l === 'string' ? l : l.name;
+        const level = typeof l === 'string' ? '' : l.level || '';
+        return '<span class="chip chip-light">' + esc(name) + (level ? ' · ' + esc(level) : '') + '</span>';
+      }).join(' ');
+
+    // ---------- Certifications ----------
+    const certGrid = document.getElementById('certGrid');
+    (D.certifications || []).forEach((c) => {
+      certGrid.innerHTML +=
+        '<div class="cert-item">' +
+          '<span class="cert-name">' + esc(c.name) + '</span>' +
+          '<span class="cert-meta">' + esc(c.org) + ' · ' + esc(c.date) + '</span>' +
+        '</div>';
+    });
+
+    // ---------- Contact ----------
+    const contactLinks = document.getElementById('contactLinks');
+    contactLinks.innerHTML =
+      linkHtml('✉️ ' + D.contact.email, 'mailto:' + D.contact.email) +
+      linkHtml('LinkedIn', D.contact.linkedin) +
+      linkHtml('GitHub', D.contact.github);
+
+    // ---------- Footer ----------
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('footerName').textContent = D.name;
+    if (D.quote && D.quote.text) {
+      document.getElementById('footerQuote').innerHTML =
+        '"' + esc(D.quote.text) + '"<span class="quote-author">— ' + esc(D.quote.author) + '</span>';
+    }
+
+    // ---------- 邮箱一键复制 ----------
+    document.querySelectorAll('[data-copy]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const text = el.getAttribute('data-copy');
+        const done = () => {
+          const orig = el.textContent;
+          el.textContent = '✓ Copied!';
+          setTimeout(() => { el.textContent = orig; }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(done);
+        } else {
+          // 降级方案：临时 textarea
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (err) {}
+          document.body.removeChild(ta);
+          done();
+        }
+      });
+    });
+
+    // ---------- 主题切换按钮 ----------
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const root = document.documentElement;
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('dsh-theme', next); } catch (e) {}
+      });
+      // 系统深浅色变化时自动跟随（仅当用户未手动选择过）
+      if (window.matchMedia) {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        const onChange = (e) => {
+          let saved = null;
+          try { saved = localStorage.getItem('dsh-theme'); } catch (err) {}
+          if (!saved) document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        };
+        if (mq.addEventListener) mq.addEventListener('change', onChange);
+        else if (mq.addListener) mq.addListener(onChange);
+      }
+    }
+
+    // ---------- 统计数字滚动动画 ----------
+    function animateStatValue(el) {
+      const text = el.textContent;
+      const m = text.match(/^([\d,]+)(.*)$/);
+      if (!m) return;
+      const suffix = m[2];
+      // 范围型数字（如 50–67%）后缀含数字，跳过动画保持静态
+      if (/\d/.test(suffix)) return;
+      const target = parseInt(m[1].replace(/,/g, ''), 10);
+      const dur = 1200;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased).toLocaleString('en-US') + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // ---------- 克制的滚动淡入（只触发一次；不支持 IntersectionObserver 时保持可见）----------
+    (function () {
+      if (!('IntersectionObserver' in window)) return;
+      const targets = document.querySelectorAll(
+        '.section-title, .about-text, .stats, .edu-card, .tl-item, .project-card, .skill-group, .languages, .cert-grid, .contact-note, .contact-links'
+      );
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.classList.add('visible');
+            // 统计条进入视口时触发数字滚动
+            if (en.target.classList.contains('stats')) {
+              en.target.querySelectorAll('.stat-value').forEach(animateStatValue);
+            }
+            io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+      targets.forEach((el) => {
+        el.classList.add('reveal');
+        io.observe(el);
+      });
+    })();
+
+    // ---------- 导航滚动高亮（scrollspy）----------
+    (function () {
+      const sections = document.querySelectorAll('main section[id]');
+      const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+      if (!('IntersectionObserver' in window) || !sections.length) return;
+      const clearActive = () => navLinks.forEach((a) => a.classList.remove('active'));
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            navLinks.forEach((a) => {
+              a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id);
+            });
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      sections.forEach((s) => spy.observe(s));
+      // 页面顶部时不高亮任何导航项
+      window.addEventListener('scroll', () => {
+        if (window.scrollY < 120) clearActive();
+      }, { passive: true });
+    })();
+
+    // ---------- 移动端汉堡菜单 ----------
+    const navToggle = document.getElementById('navToggle');
+    const navLinksEl = document.querySelector('.nav-links');
+    if (navToggle && navLinksEl) {
+      navToggle.addEventListener('click', () => {
+        const open = navLinksEl.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      // 点击链接后自动收起菜单
+      navLinksEl.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+          navLinksEl.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // ---------- 回到顶部 ----------
+    (function () {
+      const btn = document.getElementById('backToTop');
+      if (!btn) return;
+      const onScroll = () => {
+        btn.classList.toggle('show', window.scrollY > 480);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+
+    // ---------- 顶部阅读进度条 + 导航滚动状态 ----------
+    (function () {
+      const bar = document.getElementById('scrollProgress');
+      const nav = document.querySelector('.nav');
+      const onScroll = () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        if (bar) bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+        if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>
