@@ -1,0 +1,14 @@
+# 工具/临时目录（不上传到 GitHub）
+.dsh-vision-router/
+.pip-tmp/
+
+# 本地预览服务器脚本（本地使用，无需部署）
+serve.py
+
+# 临时脚本
+*.ps1
+
+# 系统文件
+Thumbs.db
+.DS_Store
+desktop.ini
