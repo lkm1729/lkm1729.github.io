@@ -23,7 +23,8 @@ const siteData = {
     { value: "2,600+", label: "Questionnaires processed" },
     { value: "400,000+", label: "Chinese characters transcribed" },
     { value: "50–67%", label: "Review time cut with LLM" },
-    { value: "3", label: "AI projects shipped in ~28h" },
+    { value: "4", label: "AI projects shipped in ~70h" },
+    { value: "1.1B", label: "AI tokens consumed" },
   ],
 
   // ---------- 联系方式（留空 "" 则对应按钮不显示）----------
@@ -120,6 +121,13 @@ const siteData = {
 
   // ---------- 项目展示（link 留空则不显示链接按钮；lang 为技术栈彩色标签）----------
   projects: [
+    {
+      title: "Career Assistant",
+      tag: "2026 · Electron",
+      lang: "TypeScript",
+      desc: "Windows local-first AI career assistant with four isolated workspaces, evidence-aware job matching, and privacy-conscious provider integrations.",
+      link: "https://github.com/lkm1729/career-assistant",
+    },
     {
       title: "Generative AI for Medical Image Registration",
       fullTitle: "Generative AI for Medical Image Registration & Colorization",
