@@ -64,7 +64,7 @@ const siteData = {
     },
     {
       company: "The Hong Kong Jockey Club",
-      title: "Administrative Assistant",
+      title: "Administrative Assistant (Part-Time)",
       period: "Nov 2024 — Jan 2026",
       location: "Hong Kong",
       details: [
@@ -75,7 +75,7 @@ const siteData = {
     },
     {
       company: "Buymarket Limited",
-      title: "E-Commerce Assistant",
+      title: "E-Commerce Assistant (Part-Time)",
       period: "Apr 2024 — Jul 2024",
       location: "Hong Kong",
       details: [
@@ -86,7 +86,7 @@ const siteData = {
     },
     {
       company: "City University of Hong Kong",
-      title: "Administrative Assistant (Office)",
+      title: "Administrative Assistant (Part-Time)",
       period: "Apr 2024 — May 2024",
       location: "Hong Kong",
       details: [
@@ -97,7 +97,7 @@ const siteData = {
     },
     {
       company: "City University of Hong Kong",
-      title: "Administrative Assistant (School Office)",
+      title: "Administrative Assistant (Part-Time)",
       period: "Sep 2023 — Jan 2024",
       location: "Hong Kong",
       details: [
@@ -108,7 +108,7 @@ const siteData = {
     },
     {
       company: "Top One A+ Education Center",
-      title: "Education Tutor",
+      title: "Education Tutor (Part-Time)",
       period: "Sep 2022 — Dec 2022",
       location: "Hong Kong",
       details: [
